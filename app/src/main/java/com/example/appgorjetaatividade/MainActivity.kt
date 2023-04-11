@@ -73,6 +73,9 @@ fun MyApp() {
                         keyboardType = KeyboardType.Number,
                         imeAction = ImeAction.Done
                     ),
+                    keyboardActions = KeyboardActions(
+                        onDone = { /* action to be executed when the keyboard's "Done" button is clicked */ }
+                    ),
                     modifier = Modifier.fillMaxSize()
                 )
             }
