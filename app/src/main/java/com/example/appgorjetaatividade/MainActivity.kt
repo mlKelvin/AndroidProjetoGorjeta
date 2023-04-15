@@ -1,6 +1,7 @@
 package com.example.appgorjetaatividade
 
 import android.os.Bundle
+import android.util.Half
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -21,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.appgorjetaatividade.ui.theme.AppGorjetaAtividadeTheme
+import java.math.BigDecimal
 import java.text.NumberFormat
 
 class MainActivity : ComponentActivity() {
@@ -127,12 +129,13 @@ fun MyApp() {
 
         //Valores considerando percentuais
         val totAmount = amount.toFloatOrNull() ?: 0f
+        val intTipPercent = tipPercent.toInt()
 
         val percent15ofAmount = totAmount * 0.15
-        val percentSeekofAmount = totAmount * (tipPercent / 100.0)
+        val percentSeekofAmount = totAmount * (intTipPercent.toFloat() / 100.0)
 
         val totAmountWith15perct = totAmount * 1.15
-        val totAmountWithSeekPercent = totAmount + (totAmount * (percentSeekofAmount / 100))
+        val totAmountWithSeekPercent = totAmount + (totAmount * (intTipPercent.toFloat() / 100))
 
         Spacer(modifier = Modifier.height(15.dp))
         //percentual do total
@@ -174,7 +177,7 @@ fun MyApp() {
                     .border(1.dp, color = Color.LightGray),
             )
             Text(
-                "Total: $${totAmountWithSeekPercent.formatCurrency()}",
+                "Total: $${String.format("%.2f", totAmountWithSeekPercent)}",
                 modifier = Modifier
                     .weight(1.0f)
                     .wrapContentWidth(Alignment.End)
